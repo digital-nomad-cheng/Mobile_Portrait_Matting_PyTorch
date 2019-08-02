@@ -2,7 +2,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--model_name', type=str, default='PrismaNet',\
+parser.add_argument('--model_name', type=str, default='PrismaMattingNet',\
     help='the model you choose between PrismaNet, PrimaMattingNet')
 parser.add_argument('--image_size', type=int, default=224, help='the height / width of the input image to network')
 parser.add_argument('--num_classes', type=int, default=2, help='number of model output channels')
@@ -19,6 +19,9 @@ parser.add_argument('--workers', type=int, default=4, help='number of data loadi
 parser.add_argument('--mode', type=str, default='train', help='Trainer mode: train or test')
 parser.add_argument('--nf', type=int, default=32, help='The number of filter')
 parser.add_argument('--num_test', type=int, default=320, help='The number of test image')
+parser.add_argument('--test_result_path', type=str, default='imgs/result', help='The dir for test result')
+parser.add_argument('--test_data_path', type=str, default='imgs/test', help='The dir for test imgs')
+parser.add_argument('--test_model_path', type=str, default='./models/PrismaNet_portrait_epoch-0099.pth', help='Test model file')
 
 def get_config():
     return parser.parse_args()
