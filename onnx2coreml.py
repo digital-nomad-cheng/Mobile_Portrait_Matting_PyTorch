@@ -2,7 +2,7 @@ import onnx
 import coremltools
 from onnx_coreml import convert
 from coremltools.models import MLModel
-
+# test
 onnx_model = onnx.load('models/SegNet_portrait_epoch-0099_sim.onnx')
 onnx.checker.check_model(onnx_model)
 coreml_model = convert(onnx_model,
