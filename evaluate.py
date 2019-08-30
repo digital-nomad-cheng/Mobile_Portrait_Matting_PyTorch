@@ -14,6 +14,8 @@ if config.model_name == 'PrismaNet':
     from nets.PrismaNet import PrismaNet
 elif config.model_name == 'PrismaMattingNet':
     from nets.PrismaMattingNet import PrismaNet
+elif config.model_name == "SegNet":
+    from nets.segnet import SegNet as PrismaNet
 
 def  blend_img_with_mask(img, alpha, result_path, img_name):
     img = np.array(img)

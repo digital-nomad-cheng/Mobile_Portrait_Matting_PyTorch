@@ -12,7 +12,8 @@ if config.model_name == 'PrismaNet':
     from train_prisma import Trainer
 elif config.model_name == 'PrismaMattingNet':
     from train_prisma_matting import Trainer
-from test import Tester
+elif config.model_name == 'SegNet':
+    from train_segnet import Trainer
 
 def main(config):
     if config.checkpoint_dir is None:
@@ -33,11 +34,9 @@ def main(config):
     data_loader = get_loader(config.data_path, config.batch_size, config.image_size,
                             shuffle=True, num_workers=int(config.workers))
 
-    tester = Tester(config, data_loader)
-    tester.test()
 
-    # trainer = Trainer(config, data_loader)
-    # trainer.train()
+    trainer = Trainer(config, data_loader)
+    trainer.train()
     
 
 if __name__ == "__main__":

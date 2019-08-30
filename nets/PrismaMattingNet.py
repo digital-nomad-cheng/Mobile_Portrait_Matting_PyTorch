@@ -177,5 +177,5 @@ if __name__ == "__main__":
     output_model_path = re.sub(r'pth$', 'onnx', input_model_path)
     
     model.load_state_dict(torch.load(input_model_path))
-    torch.onnx.export(model, torch.randn(1, 3, 256, 256), output_model_path, verbose=True)
+    torch.onnx.export(model, torch.randn(1, 3, 224, 224).cuda(), output_model_path, verbose=True)
     

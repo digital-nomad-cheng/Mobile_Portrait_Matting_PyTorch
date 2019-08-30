@@ -36,6 +36,7 @@ class _Interpolate(nn.Module):
                                                             
     def forward(self, x): 
         x = self.interp(x, scale_factor=self.scale_factor, mode=self.mode, align_corners=self.align_corners)
+        #x = self.interp(x, size=x., mode=self.mode, align_corners=self.align_corners)
         return x
 
 class SeparableConv2D(nn.Module):

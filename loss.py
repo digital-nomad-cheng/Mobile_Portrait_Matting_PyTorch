@@ -201,7 +201,6 @@ def fusion_softmax_loss(input, target, img):
     
     gt_img = torch.cat((target, target, target), 1) * img
     alpha = input.permute(0, 3, 1, 2)[:,1:,:,:]
-    print(alpha.shape)
     alpha_img = torch.cat((alpha, alpha, alpha), 1) * img
     color_loss = torch.sqrt(torch.pow(gt_img - alpha_img, 2.) + 1e-6).mean()
 

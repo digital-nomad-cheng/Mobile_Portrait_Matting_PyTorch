@@ -1,8 +1,3 @@
-'''
-Author  : Zhengwei Li
-Version : 1.0.0 
-'''
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -265,7 +260,8 @@ class SegNet(nn.Module):
         self.seg_extract = ERD_SegNet(classes=2)
         
         self.softmax = nn.Softmax(dim=-1)
-
+        # self.softmax2 = nn.Softmax2d()
+        self.softmax2 = nn.Softmax(dim=1)
         # init weights
         self._init_weight()
 
@@ -283,9 +279,10 @@ class SegNet(nn.Module):
     def forward(self, x):
         
         seg = self.seg_extract(x)
-        seg = seg.permute(0, 2, 3, 1)
-        seg_softmax = self.softmax(seg)
-        
+        print(seg.shape)
+        # seg = seg.permute(0, 2, 3, 1)
+        # seg_softmax = self.softmax(seg)
+        seg_softmax = self.softmax2(seg)
         return seg_softmax
 
 if __name__ == "__main__":
@@ -295,7 +292,6 @@ if __name__ == "__main__":
     model = SegNet()
     model = model.to('cuda')
     summary(model, (3, 256, 256))
-    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_model_path', type=str, default='models/PrismaNet3.pth')
     args = parser.parse_args()
@@ -303,4 +299,3 @@ if __name__ == "__main__":
     output_model_path = re.sub(r'pth$', 'onnx', input_model_path)
     model.load_state_dict(torch.load(input_model_path))
     torch.onnx.export(model, torch.randn(1, 3, 256, 256).cuda(), output_model_path)
-    """ 

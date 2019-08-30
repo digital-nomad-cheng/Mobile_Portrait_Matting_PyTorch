@@ -2,7 +2,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--model_name', type=str, default='PrismaMattingNet',\
+parser.add_argument('--model_name', type=str, default='SegNet',\
     help='the model you choose between PrismaNet, PrimaMattingNet')
 parser.add_argument('--image_size', type=int, default=224, help='the height / width of the input image to network')
 parser.add_argument('--num_classes', type=int, default=2, help='number of model output channels')
